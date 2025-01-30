@@ -53,28 +53,29 @@ export const productsList: Iproduct[] = [
 ];
 
 export const formInputList: Ipnput[] = [
-  {
-    id: "title",
-    label: "Title",
-    name: "title",
-    type: "text",
-  },
-  {
-    id: "description",
-    label: "Description",
-    name: "desc",
-    type: "text",
-  },
-  {
-    id: "image",
-    label: "Image URL",
-    name: "product image URL",
-    type: "text",
-  },
-  {
-    id: "price",
-    label: "Price",
-    name: "price",
-    type: "text",
-  },
-];
+    {
+      id: "title",
+      label: "Title",
+      name: "title",
+      type: "text",
+    },
+    {
+      id: "desc", // Ensure this matches 'desc' in Iproduct
+      label: "Description",
+      name: "desc",
+      type: "text",
+    },
+    {
+      id: "imageurl", // Match the property name
+      label: "Image URL",
+      name: "imageurl",
+      type: "text",
+    },
+    {
+      id: "price",
+      label: "Price",
+      name: "price",
+      type: "text",
+    },
+  ];
+  

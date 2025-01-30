@@ -25,7 +25,7 @@ export interface IProp extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   }
   export interface Ipnput {
     id :  string
-    name : 'title' | 'desc' | 'product image URL' | 'price'
+    name : 'title' | 'desc' | 'imageurl' | 'price'
     label : string
     type :  string
   }
