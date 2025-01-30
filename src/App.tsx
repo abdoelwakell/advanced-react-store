@@ -1,7 +1,7 @@
 import { Input } from "@headlessui/react"
 import Card from "./commponet/Card"
-import { productslist } from "./commponet/data"
-import { fromInputList } from "./commponet/data"
+import { productsList } from "./commponet/data"
+import { formInputList } from "./commponet/data"
 import Model from "./commponet/ui/Model"
 
 import { useState } from "react"
@@ -23,19 +23,20 @@ const [isOpen, setIsOpen] = useState(false)
 
 const open=()=>  setIsOpen(true)
 const closeModel=()=>  setIsOpen(false)
-const onchangehandelr=(e : React.ChangeEvent<HTMLInputElement>)=> {
-    const [value , name ] = e.target;
-    setproduct({
-      ...product , 
-      [name] : value 
-    })
-}
+const onchangehandelr = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const { value, name } = e.target;
+  console.log(e.target.value)
+  setproduct({
+    ...product,
+    [name]: value
+  });
+};
 /*handeler*/ 
-  const productrender = productslist.map(product=><Card key={product.id} product={product}   />)
-  const renderInput = fromInputList.map (input => <div className="flex flex-col">
+  const productrender = productsList.map(product=><Card key={product.id} product={product}   />)
+  const renderInput = formInputList.map (input => <div className="flex flex-col">
     <label htmlFor={input.id}>{input.label}</label>
-    <Input type="text" id={input.id} name={input.name}  className='border border-gray-500'   value={''} onChange={onchangehandelr}   />
-
+    {/**make a controlled dynamic commpoonet  */}
+    <Input type="text" id={input.id} name={input.name} value={product[input.name]}  className='border border-gray-500'    onChange={onchangehandelr}   />
   </div>)
   return (
     <main className="container mx-auto px-4">
