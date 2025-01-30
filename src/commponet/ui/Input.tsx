@@ -1,14 +1,12 @@
 import { FC } from "react";
-interface IProps {
-  // Define your props here (if none, leave empty or delete this interface)
-}
+import {InputHTMLAttributes} from 'react'
+interface IProps extends InputHTMLAttributes<HTMLInputElement> {}
 
-const Input: FC<IProps> = ({}) => {
+const Input: FC<IProps> = ({...rest}) => {
   return (
 <>
-<div className="flex flex-col">
-    <label htmlFor="">title</label>
-    <input type="text" className="border-2 border-gray-500"  />
+<div >
+    <input    {...rest} />
   </div>
 </>
   );

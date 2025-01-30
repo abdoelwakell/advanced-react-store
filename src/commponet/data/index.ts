@@ -99,7 +99,7 @@ export const fromInputList  : Input[]= [{
 {
     id : 'title' , 
     name : 'title' ,
-    label : "product title" ,
+    label : "product description" ,
     type : 'text'
 } 
 , 
@@ -112,7 +112,7 @@ export const fromInputList  : Input[]= [{
 {
     id : 'title' , 
     name : 'title' ,
-    label : "product title" ,
+    label : "product image URL" ,
     type : 'text'
 } 
 ]
