@@ -1,5 +1,12 @@
 import { Iproduct } from "../../interfaces/interface";
 import { v4 as uuid } from 'uuid';
+import { Input } from "../../interfaces/interface";
+
+
+
+
+
+
 
 export const productslist: Iproduct[] = [
     {
@@ -82,3 +89,30 @@ export const productslist: Iproduct[] = [
     
     
 ];
+
+export const fromInputList  : Input[]= [{
+    id : 'title' , 
+    name : 'title' ,
+    label : "product title" ,
+    type : 'text'
+} , 
+{
+    id : 'title' , 
+    name : 'title' ,
+    label : "product title" ,
+    type : 'text'
+} 
+, 
+{
+    id : 'title' , 
+    name : 'title' ,
+    label : "product title" ,
+    type : 'text'
+} ,
+{
+    id : 'title' , 
+    name : 'title' ,
+    label : "product title" ,
+    type : 'text'
+} 
+]

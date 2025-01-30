@@ -1,5 +1,6 @@
 import Card from "./commponet/Card"
 import { productslist } from "./commponet/data"
+import { fromInputList } from "./commponet/data"
 import Model from "./commponet/ui/Model"
 import { useState } from "react"
 const App = () => {
@@ -14,6 +15,13 @@ function closeModel() {
 setIsOpen(false)
 }
   const productrender = productslist.map(product=><Card key={product.id} product={product}   />)
+  const renderInput = fromInputList.map (input => 
+  <div className="flex flex-col">
+    <label htmlFor="">{input.label}</label>
+    <input type="text" className="border-2 border-gray-500"  />
+  </div>
+  
+)
   return (
     <main className="container mx-auto px-4">
       <button className="w-full mt-2 p-2 bg-indigo-600 rounded-full cursor-pointer " onClick={open} >Add</button>
@@ -22,8 +30,12 @@ setIsOpen(false)
     </div>
     
 <Model isOpen={isOpen}  close={closeModel} title="Add a new product">
-<button className="bg-indigo-600 w-full" >submit</button>
-<button className="bg-gray-700-800 hover:bg-slate-500 w-full">cancel</button>
+  {renderInput}
+  <div className="flex justify-center items-center mt-5">
+  <button className="bg-indigo-600 w-full" >submit</button>
+  <button className="bg-gray-700-800 hover:bg-slate-500 w-full">cancel</button>
+  </div>
+
 </Model>
    </main>
 

@@ -23,3 +23,9 @@ export interface IProp extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     }
    
   }
+  export interface Input {
+    id :  string
+    name : string
+    label : string
+    type :  string
+  }

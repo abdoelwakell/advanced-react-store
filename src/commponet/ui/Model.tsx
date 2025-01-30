@@ -29,7 +29,7 @@ const Modal: React.FC<IProps> = ({ isOpen, close, title, children }) => {
                 {title}
               </DialogTitle>
             )}
-            <div className="mt-4 flex justify-center items-center">
+            <div className="mt-4 ">
               {children}
             </div>
           </DialogPanel>
