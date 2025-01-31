@@ -30,7 +30,7 @@ const Modal: React.FC<IProps> = ({ isOpen, close, title, children }) => {
               </DialogTitle>
             )}
             <div className="mt-4 ">
-              {children}
+        {children}
             </div>
           </DialogPanel>
         </div>
