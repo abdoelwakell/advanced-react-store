@@ -23,6 +23,8 @@ const [isOpen, setIsOpen] = useState(false)
 
 const open=()=>  setIsOpen(true)
 const closeModel=()=>  setIsOpen(false)
+
+
 const onchangehandelr = (e: React.ChangeEvent<HTMLInputElement>) => {
   const { value, name } = e.target;
   console.log(e.target.value)
