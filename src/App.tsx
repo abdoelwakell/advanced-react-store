@@ -61,10 +61,10 @@ const App = () => {
       </div>
 
       <Model isOpen={isOpen} close={closeModel} title="Add a new product">
-        <form className='space-y-3' onSubmit={submitHandler}>
+        <form className='space-y-3'  onSubmit={submitHandler}>
           {renderInput}
-          <div className="flex justify-center items-center mt-5 space-x-4">
-            <button type="submit" className="bg-indigo-600 w-full rounded-md text-white p-2">Submit</button>
+          <div className="flex justify-center items-center mt-5 space-x-4" >
+            <button type="submit" className="bg-indigo-600 w-full rounded-md text-white p-2" >Submit</button>
             <button type="button" className="bg-red-600 w-full rounded-md text-white p-2" onClick={cancelOn}>Cancel</button>
           </div>
         </form>
