@@ -5,7 +5,7 @@ import { formInputList } from "./commponet/data"
 import Model from "./commponet/ui/Model"
 import { useState } from "react"
 import { Iproduct } from "./interfaces/interface"
-
+import { IoMdClose } from "react-icons/io";
 const App = () => {
   const defaultObject: Iproduct = {
     title: '',
@@ -37,7 +37,7 @@ const App = () => {
     event.preventDefault();
     console.log([product]);
     setProduct(defaultObject);
-    closeModel() ;  ;
+
   };
 
   const cancelOn = () => {
@@ -60,12 +60,14 @@ const App = () => {
         {productRender}
       </div>
 
-      <Model isOpen={isOpen} close={closeModel} title="Add a new product">
+      <Model isOpen={isOpen} close={closeModel} title={<div className="flex justify-between items-center">
+        <p>Add a new product</p>
+        <IoMdClose onClick={cancelOn} size={20} className="cursor-pointer text-indigo-900 bg-gray-400 rounded-md "/>
+      </div>}   >
         <form className='space-y-3'  onSubmit={submitHandler}>
           {renderInput}
-          <div className="flex justify-center items-center mt-5 space-x-4" >
+          <div className="flex justify-center items-center mt-5 space-x-4 " >
             <button type="submit" className="bg-indigo-600 w-full rounded-md text-white p-2" >Submit</button>
-            <button type="button" className="bg-red-600 w-full rounded-md text-white p-2" onClick={cancelOn}>Cancel</button>
           </div>
         </form>
       </Model>

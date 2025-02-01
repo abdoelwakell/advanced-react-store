@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 interface IProps {
   isOpen: boolean;
   close: () => void;
-  title?: string;
+  title?: ReactNode;
   children: ReactNode; // Use `children` instead of `child`
 }
 
