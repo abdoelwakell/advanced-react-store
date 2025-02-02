@@ -13,7 +13,7 @@ export interface IProp extends React.ButtonHTMLAttributes<HTMLButtonElement> {
  export interface Iproduct {
     id ?: string | undefined ;
     title: string ;
-    desc ?: string ;
+    desc : string ;
     imageurl : string;
     price : string  ;
     colors : string [] ;
