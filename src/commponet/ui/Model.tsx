@@ -11,6 +11,7 @@ interface IProps {
 const Modal: React.FC<IProps> = ({ isOpen, close, title, children }) => {
   return (
     <Dialog
+
       open={isOpen}
       as="div"
       className="relative z-10 focus:outline-none"

@@ -78,4 +78,30 @@ export const formInputList: Ipnput[] = [
       type: "text",
     },
   ];
+
+
+  
+  export const colors: string[] = [
+    "#FF5733", // Red-Orange
+    "#33FF57", // Green
+    "#3357FF", // Blue
+    "#FF33A1", // Pink
+    "#A133FF", // Purple
+    "#FFD700", // Gold
+    "#00FFFF", // Cyan
+    "#FF4500", // Orange Red
+    "#008080", // Teal
+    "#800000", // Maroon
+    "#4B0082", // Indigo
+    "#FFFF00", // Yellow
+    "#000000", // Black
+    "#FFFFFF", // White
+    "#808080", // Gray
+    "#B22222", // Firebrick
+    "#2E8B57", // Sea Green
+    "#D2691E", // Chocolate
+    "#FF1493", // Deep Pink
+    "#4682B4"  // Steel Blue
+  ];
+  
   
