@@ -40,7 +40,7 @@ export const productvalidation = ( product : IProp)=> {
   if (!product.imageurl.trim() || !isValidImage) {
     errors.imageurl ='product image url must be a valid image url'
   } 
-  if (!product.price.trim() || !isNaN(Number(product.price)) ) {
+  if (!product.price.trim() || isNaN(Number(product.price)) ) {
     errors.price ='Vaild price number is required'
   }
 

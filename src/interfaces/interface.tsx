@@ -1,6 +1,8 @@
 
 export interface IProps {
     product : Iproduct ;
+    setproductEdit :(product:Iproduct)=> void
+    openEditmodel:()=>void
 }
 export interface IProp extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children?: React.ReactNode;        // Required prop for React children
@@ -19,7 +21,7 @@ export interface IProp extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     colors : string [] ;
     category :  {
         name : string ;
-        imageurl : string ;
+        imgUrl : string ;
     }
    
   }
@@ -28,4 +30,9 @@ export interface IProp extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     name : 'title' | 'desc' | 'imageurl' | 'price'
     label : string
     type :  string
+  }
+  export interface Icatagory {
+    id : string , 
+    name :string , 
+    imgUrl : string 
   }

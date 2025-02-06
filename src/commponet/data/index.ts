@@ -1,4 +1,4 @@
-import { Iproduct, Ipnput } from "../../interfaces/interface";
+import { Iproduct, Ipnput  , Icatagory} from "../../interfaces/interface";
 import { v4 as uuid } from "uuid";
 
 export const productsList: Iproduct[] = [
@@ -11,7 +11,7 @@ export const productsList: Iproduct[] = [
     colors: ["", "", ""],
     category: {
       name: "cars",
-      imageurl: "https://images.pexels.com/photos/17855577/pexels-photo-17855577/free-photo-of-ferrari-812-gts.jpeg",
+      imgUrl: "https://images.pexels.com/photos/17855577/pexels-photo-17855577/free-photo-of-ferrari-812-gts.jpeg",
     },
   },
   {
@@ -23,7 +23,7 @@ export const productsList: Iproduct[] = [
     colors: ["", "", ""],
     category: {
       name: "cars",
-      imageurl: "https://images.pexels.com/photos/17855577/pexels-photo-17855577/free-photo-of-ferrari-812-gts.jpeg",
+      imgUrl: "https://images.pexels.com/photos/17855577/pexels-photo-17855577/free-photo-of-ferrari-812-gts.jpeg",
     },
   },
   {
@@ -35,7 +35,7 @@ export const productsList: Iproduct[] = [
     colors: ["", "", ""],
     category: {
       name: "cars",
-      imageurl: "https://images.pexels.com/photos/17855577/pexels-photo-17855577/free-photo-of-ferrari-812-gts.jpeg",
+      imgUrl: "https://images.pexels.com/photos/17855577/pexels-photo-17855577/free-photo-of-ferrari-812-gts.jpeg",
     },
   },
   {
@@ -47,7 +47,7 @@ export const productsList: Iproduct[] = [
     colors: ["", "", ""],
     category: {
       name: "cars",
-      imageurl: "https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg?auto=compress&cs=tinysrgb&w=600",
+      imgUrl: "https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg?auto=compress&cs=tinysrgb&w=600",
     },
   },
 ];
@@ -79,7 +79,23 @@ export const formInputList: Ipnput[] = [
     },
   ];
 
+export const categorys : Icatagory[] = [{
+  id : uuid () ,
+  name : "cars",
+  imgUrl : "https://www.pixelstalk.net/wp-content/uploads/2016/06/HD-Car-Wallpapers-Free-Download.jpg"
+} , 
+   {
+    id : uuid () ,
+    name : "Pc",
+    imgUrl : "https://tse4.mm.bing.net/th?id=OIP.r_qnyOWgY9iJejjrfOp5pwHaF7&pid=Api&P=0&h=220" , 
+   } , 
+   {
+    id : uuid () ,
+    name : 'Shirt', 
+    imgUrl : "https://tse3.mm.bing.net/th?id=OIP.Mq-LsRtsmAlrNIc_pxnL7wHaIh&pid=Api&P=0&h=220"
 
+   }
+]
   
   export const colors: string[] = [
     "#FF5733", // Red-Orange

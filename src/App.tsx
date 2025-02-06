@@ -1,6 +1,6 @@
 import { Input } from "@headlessui/react";
 import Card from "./commponet/Card";
-import { productsList } from "./commponet/data";
+import { categorys, productsList } from "./commponet/data";
 import { colors } from "./commponet/data";
 import { formInputList } from "./commponet/data";
 import Model from "./commponet/ui/Model";
@@ -10,7 +10,8 @@ import { IoMdClose } from "react-icons/io";
 import { productvalidation } from "./validation";
 import Error from './commponet/Error';
 import Circlecolor from "./commponet/ui/Circlecolor";
-
+import { v4 as uuid } from "uuid";
+import Select from "./commponet/ui/Select";
 const App = () => {
   const defaultObject: Iproduct = {
     title: '',
@@ -20,12 +21,14 @@ const App = () => {
     colors: [],
     category: {
       name: '',
-      imageurl: ''
+      imgUrl: ''
     }
   };
 
   const [Products, setProducts] = useState<Iproduct[]>(productsList);
-  const [product, setProduct] = useState<Iproduct>(defaultObject);
+  const [productEdit , setproductEdit] = useState<Iproduct>(defaultObject)
+  const [product, setProduct] = useState<Iproduct>(defaultObject)
+  const [selectcat , setselectcat] = useState(categorys[0])
   const [errors, setErrors] = useState({
     title: '',
     desc: '',
@@ -33,10 +36,12 @@ const App = () => {
     price: ''
   });
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenedited ,setOpenEdited] = useState(false) 
   const [TempColor, SetTempColor] = useState<string[]>([]);
-
   const open = () => setIsOpen(true);
   const closeModel = () => setIsOpen(false);
+  const openEditmodel = () => setOpenEdited(true);
+  const closeEditmodel = () => setOpenEdited(false);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
@@ -46,7 +51,35 @@ const App = () => {
     });
     setErrors({ ...errors, [name]: '' });
   };
+    
+   {/** */}
 
+   const submitEDitHandler = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    const { title, desc, imageurl, price } = product;
+    const validationErrors = productvalidation({ title, desc, imageurl, price });
+    setErrors(validationErrors);
+
+    const HaserrorMessage = Object.values(validationErrors).some(value => value !== '');
+    if (HaserrorMessage) return;
+
+    setProducts(prev => [ {...product , id :uuid() , colors :TempColor , category:selectcat}, ...prev ]);
+    setProduct(defaultObject);
+    SetTempColor([]);
+    closeModel();
+  };
+
+
+
+
+
+
+
+
+
+
+
+  
   const submitHandler = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     const { title, desc, imageurl, price } = product;
@@ -56,16 +89,22 @@ const App = () => {
     const HaserrorMessage = Object.values(validationErrors).some(value => value !== '');
     if (HaserrorMessage) return;
 
-    setProducts(prev => [...prev, product]);
+    setProducts(prev => [ {...product , id :uuid() , colors :TempColor , category:selectcat}, ...prev ]);
     setProduct(defaultObject);
     SetTempColor([]);
     closeModel();
   };
-
+  const cancelEditModel = () => {
+    setOpenEdited(false)
+    closeModel();
+  };
   const cancelOn = () => {
     setProduct(defaultObject);
     closeModel();
   };
+  const rest=()=> {
+    setProduct(defaultObject);
+  }
 
   const colorsRender = colors.map(color => (
     <Circlecolor
@@ -81,7 +120,7 @@ const App = () => {
     />
   ));
 
-  const productRender = Products.map(Products => <Card key={Products.id} product={Products} />);
+  const productRender = Products.map(Products => <Card key={Products.id} product={Products}  setproductEdit={setproductEdit} openEditmodel={openEditmodel}/>);
   const renderInput = formInputList.map(input => (
     <div className="flex flex-col space-y-1" key={input.id}>
       <label htmlFor={input.id} className="font-semibold text-gray-700">{input.label}</label>
@@ -126,11 +165,11 @@ const App = () => {
       >
         <form className="space-y-4" onSubmit={submitHandler}>
           {renderInput}
-
+                 
           <div className="flex space-x-4 justify-center flex-wrap">
             {colorsRender}
           </div>
-
+          <Select selected={selectcat} setSelected={setselectcat}/>
           <div className="flex space-x-2 justify-center flex-wrap mt-3">
             {TempColor.map(color => (
               <span
@@ -143,16 +182,79 @@ const App = () => {
             ))}
           </div>
 
-          <div className="flex flex-col mt-6 space-x-4">
+          <div className="flex items-center justify-center mt-6 space-x-4">
             <button
               type="submit"
               className="bg-indigo-600 w-full rounded-md text-white p-3 font-semibold hover:bg-indigo-700 transition-all"
             >
               Submit
             </button>
+
+
+            <button
+            onClick={rest}
+              type="submit"
+              className="bg-gray-600 w-full rounded-md text-white p-3 font-semibold hover:bg-gray-800 transition-all"
+            >
+              
+              Reset
+            </button>
           </div>
         </form>
       </Model>
+
+
+{/**Model of edit model  */}
+<Model
+        isOpen={isOpenedited}
+        close={closeEditmodel}
+        title={
+          <div className="flex justify-between items-center">
+            <p className="text-lg font-semibold text-gray-800">Edit product Model </p>
+            <IoMdClose
+              onClick={cancelEditModel}
+              size={20}
+              className="cursor-pointer text-white bg-indigo-600 rounded-full p-1 hover:bg-indigo-700"
+            />
+          </div>
+        }
+      >
+
+        <form className="space-y-4" onSubmit={submitEDitHandler}>
+  
+
+
+
+
+
+
+
+          <div className="flex items-center justify-center mt-6 space-x-4">
+            <button
+              type="submit"
+              className="bg-indigo-600 w-full rounded-md text-white p-3 font-semibold hover:bg-indigo-700 transition-all"
+            >
+              Submit
+            </button>
+
+
+            <button
+            onClick={rest}
+              type="submit"
+              className="bg-gray-600 w-full rounded-md text-white p-3 font-semibold hover:bg-gray-800 transition-all"
+            >
+              
+              Reset
+            </button>
+          </div>
+        </form>
+
+        
+      </Model>
+
+
+
+
     </main>
   );
 };
