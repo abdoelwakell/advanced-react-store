@@ -1,3 +1,4 @@
+import { produnctname } from "../types";
 
 export interface IProps {
     product : Iproduct ;
@@ -27,7 +28,7 @@ export interface IProp extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   }
   export interface Ipnput {
     id :  string
-    name : 'title' | 'desc' | 'imageurl' | 'price'
+    name : produnctname
     label : string
     type :  string
   }

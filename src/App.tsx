@@ -4,7 +4,7 @@ import { categorys, productsList } from "./commponet/data";
 import { colors } from "./commponet/data";
 import { formInputList } from "./commponet/data";
 import Model from "./commponet/ui/Model";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { Iproduct } from "./interfaces/interface";
 import { IoMdClose } from "react-icons/io";
 import { productvalidation } from "./validation";
@@ -12,6 +12,7 @@ import Error from './commponet/Error';
 import Circlecolor from "./commponet/ui/Circlecolor";
 import { v4 as uuid } from "uuid";
 import Select from "./commponet/ui/Select";
+import { produnctname } from "./types";
 const App = () => {
   const defaultObject: Iproduct = {
     title: '',
@@ -52,19 +53,29 @@ const App = () => {
     setErrors({ ...errors, [name]: '' });
   };
     
+
+
+  
+  const onChangeToHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = e.target;
+    setproductEdit({
+      ...productEdit,
+      [name]: value
+    });
+    setErrors({ ...errors, [name]: '' });
+  };
    {/** */}
 
    const submitEDitHandler = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    const { title, desc, imageurl, price } = product;
+    const { title, desc, imageurl, price } = productEdit;
     const validationErrors = productvalidation({ title, desc, imageurl, price });
     setErrors(validationErrors);
 
     const HaserrorMessage = Object.values(validationErrors).some(value => value !== '');
     if (HaserrorMessage) return;
 
-    setProducts(prev => [ {...product , id :uuid() , colors :TempColor , category:selectcat}, ...prev ]);
-    setProduct(defaultObject);
+    setproductEdit(defaultObject);
     SetTempColor([]);
     closeModel();
   };
@@ -119,7 +130,26 @@ const App = () => {
       }}
     />
   ));
+const productRenderEdit=(id:string , label :string ,name : produnctname  ) : ReactNode => {
+    return (
+      <div className="flex flex-col space-y-1" >
+      <label htmlFor={id} className="font-semibold text-gray-700">
+       {label}
+      </label>
+      <Input
+        type="text"
+        id={id}
+        name={name}
+        value={productEdit[name]}
+        className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-indigo-600"
+        onChange={onChangeToHandler}
+      />
+      <Error Msg={errors[name]} />
+      </div>
+    )
 
+    
+}
   const productRender = Products.map(Products => <Card key={Products.id} product={Products}  setproductEdit={setproductEdit} openEditmodel={openEditmodel}/>);
   const renderInput = formInputList.map(input => (
     <div className="flex flex-col space-y-1" key={input.id}>
@@ -220,15 +250,14 @@ const App = () => {
         }
       >
 
-        <form className="space-y-4" onSubmit={submitEDitHandler}>
-  
+            {productRenderEdit('title' , 'product title' , 'title')}
+            {productRenderEdit('description' , 'product title' , 'desc')}
+            {productRenderEdit('Image URL' , 'Image URL' , 'imageurl')}
+            {productRenderEdit('Price' , 'Price' , 'price')}
 
 
 
-
-
-
-
+    <form className="space-y-4" onSubmit={submitEDitHandler}>
           <div className="flex items-center justify-center mt-6 space-x-4">
             <button
               type="submit"
@@ -248,13 +277,7 @@ const App = () => {
             </button>
           </div>
         </form>
-
-        
       </Model>
-
-
-
-
     </main>
   );
 };

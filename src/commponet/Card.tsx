@@ -4,6 +4,7 @@ import Btn from "./ui/Btn";
 import { txts } from "./util/Func";
 import Circlecolor from "./ui/Circlecolor"; 
 const Card: FC<IProps> = ({product ,setproductEdit , openEditmodel}) => {
+  {/**Destructing product  */}
   const {colors,desc,imageurl,price,title} = product ;
 
     const onEdit =()=> {
